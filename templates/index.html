@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Resume Strength Matrix</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
+  </head>
+  <body>
+    <header class="app-header">
+      <div class="container">
+        <h1>Resume Strength Matrix</h1>
+        <p class="subtitle">
+          Paste a resume (and optional job description) to generate a strengths & weaknesses summary.
+        </p>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="input-panel">
+        <div class="field">
+          <label for="resumeText">Resume</label>
+          <textarea id="resumeText" rows="14" placeholder="Paste resume text here..."></textarea>
+        </div>
+        <div class="field">
+          <label for="jobDescription">Job Description <span class="optional">Optional</span></label>
+          <textarea id="jobDescription" rows="8" placeholder="Paste job description to tailor the analysis..."></textarea>
+        </div>
+        <button id="analyzeBtn" class="primary">Analyze Resume</button>
+        <p id="error" class="error" role="alert" hidden></p>
+      </section>
+
+      <section id="results" class="results" hidden>
+        <div class="summary">
+          <div>
+            <h2 id="candidateName"></h2>
+            <p id="overallSummary"></p>
+          </div>
+          <div>
+            <h3>Tags</h3>
+            <ul id="tagList" class="tag-list"></ul>
+          </div>
+        </div>
+
+        <div class="matrix">
+          <div class="matrix-header">
+            <span>Skill Category</span>
+            <span>Strengths</span>
+            <span>Weaknesses</span>
+            <span>Score</span>
+          </div>
+          <div id="matrixBody"></div>
+        </div>
+
+        <div class="recommendations">
+          <h3>Recommendations</h3>
+          <ul id="recommendationsList"></ul>
+        </div>
+      </section>
+    </main>
+
+    <template id="skillRowTemplate">
+      <div class="matrix-row">
+        <div class="category"></div>
+        <ul class="strengths"></ul>
+        <ul class="weaknesses"></ul>
+        <div class="score"></div>
+      </div>
+    </template>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}" defer></script>
+  </body>
+</html>
